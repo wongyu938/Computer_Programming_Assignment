@@ -11,7 +11,7 @@ def Draw_Graph(subject):
     woman_counts = np.array(list(woman_data.values()))
 
     man_hist, man_bins = np.histogram(man_scores, weights=man_counts, bins=30, density=True)
-    man_x = (man_bins[:-1] + man_bins[1:]) / 2  # 구간 중심 계산
+    man_x = (man_bins[:-1] + man_bins[1:]) / 2 
     man_smooth = np.interp(np.linspace(man_bins[0], man_bins[-1], 300), man_x, man_hist)
 
     woman_hist, woman_bins = np.histogram(woman_scores, weights=woman_counts, bins=30, density=True)
