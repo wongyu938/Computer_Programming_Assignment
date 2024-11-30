@@ -2,26 +2,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def Draw_Graph(subject):
-    man_data = Extract_data_man(subject)
-    woman_data = Extract_data_woman(subject)
+    mandata = Extract_data_man(subject)
+    womandata = Extract_data_woman(subject)
 
-    man_scores = np.array(list(man_data.keys()))
-    man_counts = np.array(list(man_data.values()))
-    woman_scores = np.array(list(woman_data.keys()))
-    woman_counts = np.array(list(woman_data.values()))
+    mscores = np.array(list(mandata.keys()))
+    mcounts = np.array(list(mandata.values()))
+    wscores = np.array(list(womandata.keys()))
+    wcounts = np.array(list(womandata.values()))
 
-    man_hist, man_bins = np.histogram(man_scores, weights=man_counts, bins=30, density=True)
-    man_x = (man_bins[:-1] + man_bins[1:]) / 2 
-    man_smooth = np.interp(np.linspace(man_bins[0], man_bins[-1], 300), man_x, man_hist)
+    a, b = np.histogram(mscores, weights=mcounts, bins=30, density=True)
+    man_x = (b[:-1] + b[1:]) / 2
+    e = np.interp(np.linspace(b[0], b[-1], 300), man_x, a)
 
-    woman_hist, woman_bins = np.histogram(woman_scores, weights=woman_counts, bins=30, density=True)
-    woman_x = (woman_bins[:-1] + woman_bins[1:]) / 2
-    woman_smooth = np.interp(np.linspace(woman_bins[0], woman_bins[-1], 300), woman_x, woman_hist)
+    c, d = np.histogram(wscores, weights=wcounts, bins=30, density=True)
+    woman_x = (d[:-1] + d[1:]) / 2
+    f = np.interp(np.linspace(d[0], d[-1], 300), woman_x, c)
 
     plt.figure(figsize=(10, 6))
-    x_values = np.linspace(man_bins[0], man_bins[-1], 300)
-    plt.plot(x_values, man_smooth, label="Male", color="blue")
-    plt.plot(x_values, woman_smooth, label="Female", color="orange")
+    x_values = np.linspace(b[0], b[-1], 300)
+    plt.plot(x_values, e, label="Male", color="blue")
+    plt.plot(x_values, f, label="Female", color="orange")
 
     plt.title(f"Distribution of Scores for {subject}", fontsize=14)
     plt.xlabel("Score", fontsize=12)
