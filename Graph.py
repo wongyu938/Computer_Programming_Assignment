@@ -11,7 +11,7 @@ def Draw_Graph(subject):
     wcounts = np.array(list(womandata.values()))
 
     a, b = np.histogram(mscores, weights=mcounts, bins=30, density=True)
-    man_x = (b[:-1] + b[1:]) / 2
+    man_x = (b[:-1] + b[1:]) / 2  # 구간 중심 계산
     e = np.interp(np.linspace(b[0], b[-1], 300), man_x, a)
 
     c, d = np.histogram(wscores, weights=wcounts, bins=30, density=True)
